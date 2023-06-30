@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(
     {
         credentials: true,
-        origin: "http://medisphereapi.azurewebsites.net"
+        origin: "https://medisphereapi.azurewebsites.net"
     }
 ));
 
