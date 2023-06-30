@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(
     {
         credentials: true,
-        origin: "https://medisphereapi.azurewebsites.net"
+        origin: "https://witty-mushroom-00bffa30f.3.azurestaticapps.net/"
     }
 ));
 
