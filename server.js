@@ -15,7 +15,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // setting up cors
-app.use(cors());
+app.use(cors(
+    {
+        credentials: true,
+        origin: "http://medisphereapi.azurewebsites.net"
+    }
+));
 
 // jwt setup
 app.use((req, res, next) => {
