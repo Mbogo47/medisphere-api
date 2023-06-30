@@ -18,9 +18,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(
     {
         credentials: true,
-        origin: "https://witty-mushroom-00bffa30f.3.azurestaticapps.net/"
+        origin: "https://witty-mushroom-00bffa30f.3.azurestaticapps.net"
     }
 ));
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://witty-mushroom-00bffa30f.3.azurestaticapps.net');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   next();
+// });
 
 // jwt setup
 app.use((req, res, next) => {
