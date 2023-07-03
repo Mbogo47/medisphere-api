@@ -7,6 +7,7 @@ import authRouters from "./routes/authRouters.js";
 import doctorRoutes from "./routes/doctorRouters.js";
 import patientRoutes from "./routes/patientRouter.js";
 import pharmacyRoutes from "./routes/pharmacyRouters.js";
+import surgeryRoutes from "./routes/surgeryRouters.js";
 
 const app = express();
 
@@ -15,18 +16,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // setting up cors
-app.use(cors(
-    {
-        credentials: true,
-        origin: "https://witty-mushroom-00bffa30f.3.azurestaticapps.net"
-    }
-));
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'https://witty-mushroom-00bffa30f.3.azurestaticapps.net');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// });
+app.use(cors({
+    credentials: true,
+    origin: "https://witty-mushroom-00bffa30f.3.azurestaticapps.net"
+}));
 
 // jwt setup
 app.use((req, res, next) => {
@@ -48,7 +41,7 @@ doctorRoutes(app);
 pharmacyRoutes(app);
 // labRoutes(app);
 patientRoutes(app);
-// surgeryRoutes(app);
+surgeryRoutes(app);
 authRouters(app);
 
 app.get("/", (req, res) => {
