@@ -12,25 +12,26 @@ export const loginRequired = (req, res, next) => {
 };
 
 export const registerUser = async (req, res) => {
-    const { fullName, password, email } = req.body;
+    const { fullName, password, email, dateOfBirth } = req.body;
     const hashedPassword = await bcrypt.hash(password, 12);
     let connection;
     try {
         connection = await sql.connect(config.sql);
         const result = await connection
             .request()
-            .input('email', sql.NVarChar, email)
+            .input('email', sql.VarChar, email)
             .query('SELECT * FROM Patients.Patients WHERE email = @email');
         const existingUser = result.recordset[0]
         if (existingUser) {
             return res.status(400).json({ message: 'Email already registered' });
         } else {
             await connection.request()
-                .input('fullName', sql.NVarChar, fullName)
-                .input('password', sql.NVarChar, hashedPassword)
-                .input('email', sql.NVarChar, email)
+                .input('fullName', sql.VarChar, fullName)
+                .input('password', sql.VarChar, hashedPassword)
+                .input('email', sql.VarChar, email)
+                .input('dateOfBirth', sql.Date, dateOfBirth)
                 .query(
-                    `INSERT INTO Patients.Patients (fullName, password, email, dateofBirth )
+                    `INSERT INTO Patients.Patients (fullName, password, email, dateOfBirth )
          VALUES (@fullName, @password, @email, @dateOfBirth)`
                 );
         }
